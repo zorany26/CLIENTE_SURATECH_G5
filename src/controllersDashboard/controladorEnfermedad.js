@@ -1,72 +1,73 @@
 let enfermedades = [
     {
-        id: 101,
         nombre: "Diabetes Mellitus",
         sintomas: "Sed excesiva, micción frecuente, fatiga",
-        tratamiento: "Insulina, dieta, ejercicio",
-        especialista: "Endocrinólogo",
-        diagnostico: "2020-05-12"
+        clasificacion: "Crónica",
+        grado: "Moderado",
+        probabilidadVida: true
     },
     {
-        id: 102,
         nombre: "Hipertensión Arterial",
         sintomas: "Dolor de cabeza, mareos, visión borrosa",
-        tratamiento: "Medicamentos antihipertensivos, cambios en el estilo de vida",
-        especialista: "Cardiólogo",
-        diagnostico: "2019-11-20"
+        clasificacion: "Crónica",
+        grado: "Severo",
+        probabilidadVida: true
     },
     {
-        id: 103,
         nombre: "Asma",
         sintomas: "Dificultad para respirar, tos, opresión en el pecho",
-        tratamiento: "Broncodilatadores, corticosteroides inhalados",
-        especialista: "Neumólogo",
-        diagnostico: "2018-08-15"
+        clasificacion: "Crónica",
+        grado: "Leve",
+        probabilidadVida: true
     },
     {
-        id: 104,
         nombre: "Gripe Común",
         sintomas: "Fiebre, congestión nasal, dolor de garganta",
-        tratamiento: "Descanso, líquidos, analgésicos",
-        especialista: "Médico general",
-        diagnostico: "2023-01-10"
+        clasificacion: "Aguda",
+        grado: "Leve",
+        probabilidadVida: true
     }
 ];
 
 // Crear una referencia a una etiqueta HTML donde vamos a renderizar
 let fila = document.getElementById("fila");
 
-// Recorrer los datos para obtenerlos de forma separada
+// Recorrer los datos para generar las tarjetas
 enfermedades.forEach(function(enfermedad) {
-    console.log(enfermedad);
     // Crear columnas
     let columna = document.createElement("div");
-    columna.classList.add("col");
+    columna.classList.add("col-md-4", "mb-4");
 
     // Crear tarjetas
     let tarjeta = document.createElement("div");
-    tarjeta.classList.add("card", "p-5", "h-1000", "shadow");
+    tarjeta.classList.add("card", "p-3", "h-100", "shadow");
 
-    // Crear una etiqueta para poner el nombre de la enfermedad
-    let nombre = document.createElement("h2");
-    nombre.textContent = enfermedad.nombre;
+    // Crear etiquetas para los atributos
+    let nombre = document.createElement("h5");
+    nombre.textContent = `${enfermedad.nombre}`;
 
-    // Crear una etiqueta para los síntomas +
     let sintomas = document.createElement("p");
     sintomas.textContent = `Síntomas: ${enfermedad.sintomas}`;
 
-    // Crear una etiqueta para el tratamiento +
-    let tratamiento = document.createElement("p");
-    tratamiento.textContent = `Tratamiento: ${enfermedad.tratamiento}`;
+    let clasificacion = document.createElement("p");
+    clasificacion.textContent = `Clasificación: ${enfermedad.clasificacion}`;
 
-    // Ordenar los elementos en la tarjeta
+    let grado = document.createElement("p");
+    grado.textContent = `Grado: ${enfermedad.grado}`;
+
+    let probabilidadVida = document.createElement("p");
+    probabilidadVida.textContent = `Probabilidad de Vida: ${enfermedad.probabilidadVida ? "Alta" : "Baja"}`;
+
+    // Ordenar elementos en la tarjeta
     tarjeta.appendChild(nombre);
     tarjeta.appendChild(sintomas);
-    tarjeta.appendChild(tratamiento);
+    tarjeta.appendChild(clasificacion);
+    tarjeta.appendChild(grado);
+    tarjeta.appendChild(probabilidadVida);
 
-    // Agregar la tarjeta a la columna +
+    // Agregar la tarjeta a la columna
     columna.appendChild(tarjeta);
 
-    // Agregar la columna a la fila +
+    // Agregar la columna a la fila
     fila.appendChild(columna);
 });

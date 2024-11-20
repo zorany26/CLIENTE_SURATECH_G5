@@ -1,78 +1,93 @@
 let medicamentos = [
     {
-        id: 501,
         nombre: "Paracetamol",
-        descripcion: "Analgésico y antipirético para aliviar dolores leves y fiebre.",
-        dosis: "500 mg cada 8 horas",
-        fabricante: "Laboratorios Bayer",
-        fechaExpiracion: "2025-12-30"
+        presentacion: "Tabletas de 500 mg",
+        dosis: 500.0,
+        laboratorio: "Laboratorios Bayer",
+        fechaCaducidad: "2025-12-30",
+        contraindicaciones: "No usar en casos de insuficiencia hepática",
+        registro: "INVIMA 2019M-001156-R2",
+        tieneCopago: true
     },
     {
-        id: 502,
         nombre: "Ibuprofeno",
-        descripcion: "Antiinflamatorio no esteroideo para tratar inflamación y dolor.",
-        dosis: "400 mg cada 6 horas",
-        fabricante: "Laboratorios Pfizer",
-        fechaExpiracion: "2024-07-15"
+        presentacion: "Tabletas de 400 mg",
+        dosis: 400.0,
+        laboratorio: "Laboratorios Pfizer",
+        fechaCaducidad: "2024-07-15",
+        contraindicaciones: "No usar en caso de úlceras gástricas",
+        registro: "INVIMA 2018M-002045-R2",
+        tieneCopago: true
     },
     {
-        id: 503,
         nombre: "Amoxicilina",
-        descripcion: "Antibiótico usado para infecciones bacterianas.",
-        dosis: "500 mg cada 8 horas",
-        fabricante: "Laboratorios Roche",
-        fechaExpiracion: "2026-03-22"
+        presentacion: "Cápsulas de 500 mg",
+        dosis: 500.0,
+        laboratorio: "Laboratorios Roche",
+        fechaCaducidad: "2026-03-22",
+        contraindicaciones: "Alergia a los antibióticos beta-lactámicos",
+        registro: "INVIMA 2020M-003599-R2",
+        tieneCopago: false
     },
     {
-        id: 504,
         nombre: "Loratadina",
-        descripcion: "Antihistamínico para aliviar alergias.",
-        dosis: "10 mg una vez al día",
-        fabricante: "Laboratorios Novartis",
-        fechaExpiracion: "2025-09-10"
+        presentacion: "Tabletas de 10 mg",
+        dosis: 10.0,
+        laboratorio: "Laboratorios Novartis",
+        fechaCaducidad: "2025-09-10",
+        contraindicaciones: "Evitar en personas con insuficiencia hepática",
+        registro: "INVIMA 2017M-000987-R1",
+        tieneCopago: false
     }
 ];
 
 // Crear una referencia a una etiqueta HTML donde vamos a renderizar
 let fila = document.getElementById("fila");
 
-// Recorrer los datos para obtenerlos de forma separada
+// Recorrer los datos para generar las tarjetas
 medicamentos.forEach(function(medicamento) {
-    console.log(medicamento);
     // Crear columnas
     let columna = document.createElement("div");
-    columna.classList.add("col");
+    columna.classList.add("col-md-4", "mb-4");
 
     // Crear tarjetas
     let tarjeta = document.createElement("div");
-    tarjeta.classList.add("card", "p-5", "h-1000", "shadow");
+    tarjeta.classList.add("card", "p-3", "h-100", "shadow");
 
-    // Crear una etiqueta para el nombre del medicamento
-    let nombre = document.createElement("h2");
-    nombre.textContent = medicamento.nombre;
+    // Crear etiquetas para los atributos
+    let nombre = document.createElement("h5");
+    nombre.textContent = `Nombre: ${medicamento.nombre}`;
 
-    // Crear una etiqueta para la descripción
-    let descripcion = document.createElement("p");
-    descripcion.textContent = `Descripción: ${medicamento.descripcion}`;
+    let presentacion = document.createElement("p");
+    presentacion.textContent = `Presentación: ${medicamento.presentacion}`;
 
-    // Crear una etiqueta para la dosis
     let dosis = document.createElement("p");
-    dosis.textContent = `Dosis: ${medicamento.dosis}`;
+    dosis.textContent = `Dosis: ${medicamento.dosis} mg`;
 
-    // Crear una etiqueta para el fabricante
-    let fabricante = document.createElement("p");
-    fabricante.textContent = `Fabricante: ${medicamento.fabricante}`;
+    let laboratorio = document.createElement("p");
+    laboratorio.textContent = `Laboratorio: ${medicamento.laboratorio}`;
 
-    // Crear una etiqueta para la fecha de expiración
-    let fechaExpiracion = document.createElement("p");
-    fechaExpiracion.textContent = `Expira: ${medicamento.fechaExpiracion}`;
+    let fechaCaducidad = document.createElement("p");
+    fechaCaducidad.textContent = `Fecha de Caducidad: ${medicamento.fechaCaducidad}`;
 
-    // Ordenar los elementos en la tarjeta
+    let contraindicaciones = document.createElement("p");
+    contraindicaciones.textContent = `Contraindicaciones: ${medicamento.contraindicaciones}`;
+
+    let registro = document.createElement("p");
+    registro.textContent = `Registro: ${medicamento.registro}`;
+
+    let tieneCopago = document.createElement("p");
+    tieneCopago.textContent = `Copago: ${medicamento.tieneCopago ? "Sí" : "No"}`;
+
+    // Ordenar elementos en la tarjeta
     tarjeta.appendChild(nombre);
-    tarjeta.appendChild(descripcion);
+    tarjeta.appendChild(presentacion);
     tarjeta.appendChild(dosis);
-    tarjeta.appendChild(fabricante);
-    tarjeta.appendChild(fechaExpiracion);
+    tarjeta.appendChild(laboratorio);
+    tarjeta.appendChild(fechaCaducidad);
+    tarjeta.appendChild(contraindicaciones);
+    tarjeta.appendChild(registro);
+    tarjeta.appendChild(tieneCopago);
 
     // Agregar la tarjeta a la columna
     columna.appendChild(tarjeta);
